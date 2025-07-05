@@ -1,0 +1,216 @@
+//산술연산자
+#define  _CRT_SECURE_NO_WARNINGS    // scanf 사용을 위해 필요
+#include <stdio.h>
+
+int main(void)
+{
+    int x = 0, y = 0;   // 같은 형의 변수를 여러 개 선언할 수 있다.
+
+    printf("Input two integers: ");
+    scanf("%d %d", &x, &y);
+
+    printf("+%d = %d\n", x, +x);            // 플러스 부호
+    printf("-%d = %d\n", y, -y);            // 마이너스 부호
+    printf("%d + %d = %d\n", x, y, x + y);  // 더하기
+    printf("%d - %d = %d\n", x, y, x - y);  // 빼기
+    printf("%d * %d = %d\n", x, y, x * y);  // 곱하기
+    printf("%d / %d = %d\n", x, y, x / y);  // 나누기
+    printf("%d %% %d = %d\n", x, y, x % y); // 나머지
+}
+
+//나머지 연산자
+
+  #include <stdio.h>
+
+  int main(void)
+  {
+ 	int num;
+ 	int thousands, tens;
+
+ 	printf("6자리 정수를 입력하세요 : ");
+ 	scanf("%d", &num);
+
+ 	thousands = num / 1000;
+ 	tens = num % 1000; 
+	printf("%d,%d\n", thousands, tens);
+
+  return 0;
+  }
+
+
+//증감연산자
+#include <stdio.h>
+
+int main(void)
+{
+    int stock1 = 10, stock2 = 10;
+    int current;
+
+    current = --stock1;     // 감소 후의 stock1을 current에 대입한다.(전위형)
+    printf("current = %d, stock1 = %d\n", current, stock1);
+
+    current = stock2--;     // 감소 전의 stock2를 current에 대입한다.(후위형)
+    printf("current = %d, stock2 = %d\n", current, stock2); 
+}
+
+
+//복합대입연산자
+#include <stdio.h>
+
+int main(void)
+{
+    int w = 10, x = 20, y = 10, z = 7;
+    int result = 0;    // result의 초기값은 0
+
+    result += w;        // result = result + w; ==> 0 + 10를 result에 대입한다.
+    printf("result = %d\n", result);
+
+    result *= x;        // result = result * x; ==> 10 * 20를 result에 대입한다.
+    printf("result = %d\n", result);
+
+    result /= y;        // result = result / y; ==> 200 / 10을 result에 대입한다.
+    printf("result = %d\n", result);
+
+    result %= z;        // result = result % z; ==> 20 % 7을 result에 대입한다.
+    printf("result = %d\n", result);
+
+    result *= 2 + 1;    // result = result * (2 + 1); ==> 6 * 3을 result에 대입한다.
+    printf("result = %d\n", result);
+}
+
+
+//관계연산자
+#include <stdio.h>
+
+int main(void)
+{
+    int x, y;
+
+    printf("Input two numbers: ");
+    scanf_s("%d %d", &x, &y);
+
+    printf("%d > %d  = %d\n", x, y, x > y);
+    printf("%d < %d  = %d\n", x, y, x < y);
+    printf("%d >= %d = %d\n", x, y, x >= y);
+    printf("%d <= %d = %d\n", x, y, x <= y);
+    printf("%d == %d = %d\n", x, y, x == y);
+    printf("%d != %d = %d\n", x, y, x != y);
+}
+
+//논리연산자
+#include <stdio.h>
+
+int main(void)
+{
+    int usage;
+
+    printf("usage? ");
+    scanf_s("%d", &usage);
+
+    if (usage >= 1000 && usage <= 2000) // usage가 1000~2000 사이의 값인지 검사한다.
+        printf("usage in range\n");     // 위의 조건식이 참일 때만 수행된다.
+
+    if (usage < 1000 || usage > 2000)   // usage가 1000~2000 범위 밖의 값인지 검사한다.
+        printf("out of range\n");       // 위의 조건식이 참일 때만 수행된다.
+}
+
+
+//비트 논리연산
+#include <stdio.h>
+
+int main(void)
+{
+
+    unsigned int x = 0xab;      // 0x000000ab  
+    unsigned int y = 0x0f;      // 0x0000000f
+
+    printf("%08x & %08x = %08x\n", x, y, x & y);    // 비트 AND
+    printf("%08x | %08x = %08x\n", x, y, x | y);    // 비트 OR
+    printf("%08x ^ %08x = %08x\n", x, y, x ^ y);    // 비트 XOR
+    printf("~%08x = %08x\n", x, ~x);                // 비트 NOT
+}
+
+//비트 이동연산
+#include <stdio.h>
+
+int main(void)
+{
+    unsigned int x = 0xab;   // 0x000000ab
+    unsigned int z;
+
+    printf("x = %#08x, %d\n", x, x);    // 0x000000ab, 171
+
+    z = x >> 2;                         // 비트 오른쪽 이동
+    printf("z = %#08x, %d\n", z, z);    // 0x0000002a, 42 (171 / 4)
+
+    z = x << 2;                         // 비트 왼쪽 이동
+    printf("z = %#08x, %d\n", z, z);    // 0x000002ac, 684 (171 * 4)
+}
+
+//삼항연산
+#include <stdio.h>
+
+int main(void)
+{
+    int x, y;
+    int abs, min, max;
+
+    printf("Input two numbers: ");
+    scanf_s("%d %d", &x, &y);
+
+    abs = x > 0 ? x : -x;   // x의 절대값을 구한다.
+    printf("absolute value of x   = %d\n", abs);
+
+    abs = y > 0 ? y : -y;   // y의 절대값을 구한다.
+    printf("absolute value of y   = %d\n", abs);
+
+    min = x < y ? x : y;    // x, y중 최소값을 구한다.
+    printf("minimum value of x, y = %d\n", min);
+
+    max = x > y ? x : y;    // x, y중 최대값을 구한다.
+    printf("maximum value of x, y = %d\n", max);
+
+    int num = 12.5; // 실수값으로 int 변수를 초기화하므로 값이 손실된다.(컴파일 경고)
+
+}
+
+//명시적인 형변환
+#include <stdio.h>
+
+int main(void)
+{
+    int x, y;
+    double ave;
+
+    printf("Input two numbers: ");
+    scanf_s("%d %d", &x, &y);
+
+    ave = (x + y) / 2;          // int / int의 몫을 int로 구한다.
+    printf("averate = %f\n", ave);
+    ave = (double) (x + y) / 2; // 명시적인 형 변환으로 몫을 double로 구한다.
+    printf("average = %f\n", ave);   
+}
+
+//연산자 우선순위와 결합규칙
+#include <stdio.h>
+
+int main(void)
+{
+    int x = 5, y = 1, z = 15;
+    int result;
+
+    result = ++x * 2;       // (++x) * 2로 계산된다. x는 증가되어 6이 된다.
+    printf("result = %d\n", result);
+
+    result = x + 1 > 0;     // (x + 1) > 0으로 계산된다.
+    printf("result = %d\n", result);
+
+    result = x << y;        // x << y를 먼저 계산한 다음 = 연산을 수행한다.
+    printf("result = %d\n", result);
+
+    result = (x + y) / 2;   // 우선순위가 혼동되면 ( )로 묶어준다.
+    printf("result = %d\n", result);
+
+    result = x = y;     // 대입 연산자는 좌 <-- 우로 결합되므로 result = (x = y)로 계산된다.
+    printf("result = %x\n", result);
+}

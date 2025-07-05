@@ -1,0 +1,555 @@
+/* Ex06_01.c */  //=========리턴 값과 매개변수가 없는 함수1
+#include <stdio.h>
+
+void PrintHello(void) 
+{
+     printf("프로그램을 시작합니다.\n");
+}
+
+void PrintBye(void)
+{
+	printf("프로그램을 종료합니다.\n");
+
+}
+
+int main(void)
+{
+    PrintHello();
+    PrintBye();
+
+    return 0;
+}
+
+//============리턴 값과 매개변수가 없는 함수2
+
+#include <stdio.h>
+
+void hi(void)                       // 리턴형과 매개변수가 없는 함수
+{
+    printf("Hi! Let's enjoy C prgramming.\n");
+}                                   // 함수의 끝을 만나면 리턴한다.
+
+void bye() { printf("Bye!\n"); }    // 간단한 함수는 한 줄로 작성할 수 있다.
+                                    // 매개변수 목록의 void는 생략할 수 있다.
+
+int main(void)
+{
+    hi();           // 매개변수가 없으므로 ( )만 써준다.
+    bye();
+
+    hi();           // 같은 함수를 여러 번 호출할 수 있다.
+    bye();
+}
+
+
+/* Ex06_02.c */   //==========리턴값은 없고 매개변수만 있는 함수1
+#include <stdio.h>
+
+void PrintSumAndAverage(int a, int b)
+{
+    printf("합계 : %d\n", a + b);
+    printf("평균 : %f\n", (double) (a + b) / 2);
+}
+
+int main(void)
+{
+    int x, y;
+
+	PrintSumAndAverage(10, 20);
+
+    printf("두 정수를 입력하세요 : ");
+    scanf("%d %d", &x, &y);
+	PrintSumAndAverage(x, y);
+
+    return 0;
+}
+
+//=============리턴값은 없고 매개변수만 있는 함수2
+#include <stdio.h>
+
+void draw_line(char ch, int len)    // ch  : 선 그릴 때 사용할 문자
+{                                   // len : 출력할 문자의 개수                         
+    int i;
+    for (i = 0; i < len; i++)       // ch를 len개만큼 출력한다.
+        printf("%c", ch);
+    printf("\n");
+}
+
+int main(void)
+{
+    int amount = 10, price = 1000;
+    int total = 0, width = 0;
+
+    draw_line('-', 24);     // '-'를 24개만큼 출력해서 선을 그린다.
+
+    printf("수량    단가     합계\n");
+    width = 3 + 8 + 8 + 2;  // 헤더 폭을 계산한다.(%3d+%8d+%8d+빈칸2개)
+    draw_line('=', width);  // '='를 width개만큼 출력해서 선을 그린다.
+    total = amount * price;
+    printf("%3d %8d %8d\n", amount, price, total);
+
+    draw_line('-', 24);     // '-'를 24개만큼 출력해서 선을 그린다.
+}
+
+//=================================리턴값은 없고 매개변수만 있는 함수3
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+void print_sum(int count) {
+	int i, num, sum = 0;
+	printf("%d개의 정수? ", count);
+	for (i = 0; i < count; i++) {
+		scanf("%d", &num);
+		sum += num;
+	}
+	printf("합계 : %d\n", sum);
+}
+
+int main(void) {
+	int n;
+	printf("입력할 정수 개수? ");
+	scanf("%d", &n);
+	print_sum(n);
+
+	return 0;
+}
+
+//===================매개변수 리턴값 모두 갖는 함수
+#include <stdio.h>
+
+int get_factorial(int num)  // 정수인 num을 매개변수로 전달받는다.
+{
+    int i;
+    int result = 1;
+
+    for (i = 1; i <= num; i++)
+        result *= i;
+    return result;          // 팩토리얼값 num!을 구해서 리턴한다. (int형)
+}
+
+int main(void)
+{
+    int i;
+    int fact;
+
+    for (i = 0; i <= 5; i++) {
+        fact = get_factorial(i);    // get_factorial(i)의 리턴값을 fact에 저장한다.
+        printf("%2d! = %3d\n", i, fact);
+    }
+    get_factorial(5);       // 함수의 리턴값을 사용하지 않을 수도 있다.
+}
+
+
+/* Ex06_03.c */    //================매개변수 리턴값 모두 갖는 함수(강의안에 없)
+#include <stdio.h>
+
+int GetFactorial(int num) 
+{
+    int i;
+    int fact = 1;
+    for(i = 1 ; i <= num ; i++)
+        fact *= i;
+    return fact;
+}
+
+int GetSum(int num) 
+{
+    int i;
+    int sum = 0;
+    for(i = 1 ; i <= num ; i++)
+        sum += i;
+    return sum;
+}
+
+int main(void)
+{
+    int result1, result2;
+
+    result1 = GetFactorial(10);
+    printf("10 팩토리얼 = %d\n", result1);
+
+    result2 = GetSum(10);
+    printf("1~10의 합계 = %d\n", result2);
+    
+    return 0;
+}
+
+//==========================리턴값 전달하는 함수 호출 예
+#include <stdio.h>
+
+double get_area(double radius)      // 실수인 radius를 매개변수로 전달받는다.
+{
+    const double pi = 3.14;
+    return pi * radius * radius;    // 원의 면적을 구해서 리턴한다. (double형)
+}
+
+int main(void)
+{
+    int r;
+    for (r = 1; r <= 5; r++) {
+        printf("r=%d, 원의 면적= %.2f\n", r, get_area(r));
+    }           // get_area(r)은 r을 double로 변환해서 매개변수로 전달한다.
+}
+
+
+//=====================함수 호출시 주의사항 : 매개변수와 인자 개수 일치
+#include <stdio.h>
+
+int get_max(int x, int y, int z)    // 매개변수가 3개인 함수
+{
+    int max = x > y ? x : y;
+    max = z > max ? z : max;
+    return max;
+}
+
+int main(void)
+{
+    //get_max(10, 20);              // 인자의 개수가 부족하면 컴파일 에러
+    //get_max(10, 20, 30, 40);      // 인자의 개수가 많으면 컴파일 경고
+
+    double max;
+    max = get_max(12.34, 0.5, 7.9); // 인자를 매개변수의 데이터형으로 형 변환
+    printf("max = %f\n", max);
+
+    //get_ma(1, 2, 3);              // 잘못된 이름으로 호출하면 링크 에러
+}
+
+ //함수의 정의보다 앞쪽에서 함수를 호출하는 예
+#include <stdio.h>
+
+int main(void)
+{
+    int i_res;
+    float f_res;
+
+
+    i_res = GetFactorial(5);
+    printf("5! = %d\n", i_res);
+
+    f_res = GetMax(0.5, 10.5, 12.5);
+    printf("최대값 = %f\n", f_res);
+
+    return 0;
+}
+
+int GetFactorial(int num) 
+{
+    int i;
+    int fact = 1;
+    for(i = 1 ; i <= num ; i++)
+        fact *= i;
+    return fact;
+}
+
+float GetMax(float a, float b, float c) 
+{
+    float max;
+    max = a > b ? a : b;
+    max = c > max ? c : max;
+    return max;
+}
+
+//함수의 선언을 사용하는 경우1
+#include <stdio.h>
+
+// 함수의 선언을 소스 파일의 시작 부분에 써준다.
+void draw_line(char, int);      // 함수 선언에서 매개변수 이름은 생략할 수 있다.
+double get_area(double radius);
+
+int main(void)
+{
+    int r;
+
+    draw_line('-', 40);
+    for (r = 5; r <= 20; r+=5) 
+        printf("r=%d, 원의 면적: %.2f\n", r, get_area(r));
+    draw_line('-', 40);
+}
+
+double get_area(double radius)      // 원의 면적을 구하는 함수
+{
+    const double pi = 3.14;
+    return pi * radius * radius;
+}
+
+void draw_line(char ch, int len)    // ch를 len개 출력해서 선을 그리는 함수
+{
+    int i;
+    for (i = 0; i < len; i++)
+        printf("%c", ch);
+    printf("\n");
+}
+
+//==============================//함수의 선언을 사용하는 경우2(강의안에 없)
+/* Ex06_06.c */
+#include <stdio.h>
+
+int GetFactorial(int num);
+double GetMax(double a, double b, double c);
+
+int main(void)
+{
+    int i_res;
+    double f_res;
+
+    i_res = GetFactorial(5);
+    printf("5! = %d\n", i_res);
+
+    f_res = GetMax(0.5, 10.5, 12.5);
+    printf("최대값 = %f\n", f_res);
+
+    return 0;
+}
+
+int GetFactorial(int num) 
+{
+    int i;
+    int fact = 1;
+    for(i = 1 ; i <= num ; i++)
+        fact *= i;
+    return fact;
+}
+
+double GetMax(double a, double b, double c) 
+{
+    double max;
+    max = a > b ? a : b;
+    max = c > max ? c : max;
+    return max;
+}
+
+
+/* 다른 함수에 선언된 변수 */
+#include <stdio.h>
+
+void PrintCount(void);
+
+int main(void)
+{
+    int count = 0;
+
+    printf("main: count = %d\n", count);
+
+    return 0;
+}
+
+void PrintCount(void)
+{
+    printf("PrintCount: count = %d\n", count);
+}
+
+
+
+/* 서로 다른 함수에서 같은 이름의 변수를 선언  */
+#include <stdio.h>
+
+void PrintCount(void);
+
+int main(void)
+{
+    int count = 0;
+
+    printf("main: count = %d\n", count);
+
+    PrintCount();
+
+    return 0;
+}
+
+void PrintCount(void)
+{
+    int count = 100;
+    printf("PrintCount: count = %d\n", count);
+}
+
+
+
+
+/* 같은 함수를 여러 번 호출1  */
+#include <stdio.h>
+
+void TestLocal(void);
+
+int main(void)
+{
+    TestLocal();
+    TestLocal();
+
+    return 0;
+}
+
+void TestLocal(void)
+{
+    int num = 0;
+
+    printf("num = %d\n", num++);
+}
+
+
+
+
+/* 전역변수의 선언 및 사용 */
+#include <stdio.h>
+
+void PrintCount(void);
+void Increment(void);
+void Decrement(void);
+
+int count;
+
+int main(void)
+{
+    count = 0;
+
+    PrintCount();
+    Increment();
+    Increment();
+    PrintCount();
+
+    Decrement();
+    PrintCount();
+
+    return 0;
+}
+
+void PrintCount(void)
+{
+    printf("count = %d\n", count);
+}
+
+void Increment(void)
+{
+    count++;
+}
+
+void Decrement(void)
+{
+    count--;
+}
+
+
+
+/* 함수 사이에 선언된 전역변수 */
+#include <stdio.h>
+
+void PrintCount(void);
+void Increment(void);
+void Decrement(void);
+
+int main(void)
+{
+    count = 0;   //선언 전에 전역변수 사용했으므로 컴파일 에러
+
+    Increment();
+    PrintCount();
+
+    return 0;
+}
+
+int count;
+
+void PrintCount(void)
+{
+    printf("count = %d\n", count);
+}
+
+
+void Increment(void)
+{
+    count++;
+}
+
+void Decrement(void)
+{
+    count--;
+}
+
+
+
+
+
+/* 변수 영역 규칙 */
+#include <stdio.h>
+
+void Test(void);
+
+int num = 10;
+
+int main(void)
+{
+    int num = 20;
+
+    while (1)
+    {
+        int num = 30;
+
+        printf("num = %d\n", num++);
+
+        if (num > 25)  //num==31
+            break;
+    }
+    printf("num = %d\n", num);  //num==30
+
+    Test();
+
+    return 0;
+}
+
+void Test(void)
+{
+    printf("num = %d\n", num);  //num==10
+}
+
+
+
+/* swap함수의 예-값에 의한 전달 */
+#include <stdio.h>
+
+void Swap(int x, int y);
+
+int main(void)
+{
+    int a = 10;
+    int b = 20;
+
+    printf("Swap 전의 a = %d, b = %d\n", a, b);
+
+    Swap(a, b);
+
+    printf("Swap 후의 a = %d, b = %d\n", a, b);
+
+    return 0;
+}
+
+void Swap(int x, int y)
+{
+    int temp;
+
+    temp = x;
+    x = y;
+    y = temp;
+}
+
+
+
+/* Ex06_15.c */
+#include <stdio.h>
+
+void GetSmallerAndLarger(int a, int b, int smaller, int larger);
+
+int main(void)
+{
+    int smaller = 0, larger = 0;
+
+    GetSmallerAndLarger(10, 20, smaller, larger);
+
+    printf("smaller = %d, larger = %d\n", smaller, larger);
+
+    return 0;
+}
+
+void GetSmallerAndLarger(int a, int b, int smaller, int larger)
+{
+    smaller = a < b ? a : b;
+    larger = a > b ? a : b;
+}

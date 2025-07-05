@@ -1,0 +1,266 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+int main(void)
+{
+    char ch=0;
+    int num=0;
+    double x=0;
+    printf("char    의 크기: %d\n", sizeof(char));
+    printf("short   의 크기: %d\n", sizeof(short));
+    printf("int     의 크기: %d\n", sizeof(int));
+    printf("long    의 크기: %d\n", sizeof(long));
+    printf("long long   의 크기: %d\n", sizeof(long long));
+    printf("float   의 크기: %d\n", sizeof(float));
+    printf("double  의 크기: %d\n", sizeof(double));
+    printf("long double  의 크기: %d\n", sizeof(long double));
+    printf("ch변수  의 크기: %d\n", sizeof(ch));
+    printf("num변수  의 크기: %d\n", sizeof(num));
+    printf("x변수  의 크기: %d\n", sizeof(x));
+}
+
+3-1--------------------------------------------------
+#include <stdio.h>
+
+int main(void)
+{
+    printf("char    의 크기: %d\n", sizeof(char));
+    printf("short   의 크기: %d\n", sizeof(short));
+    printf("int     의 크기: %d\n", sizeof(int));
+    printf("long    의 크기: %d\n", sizeof(long));
+    printf("float   의 크기: %d\n", sizeof(float));
+    printf("double  의 크기: %d\n", sizeof(double));
+}
+
+
+3-2-----------------------------------------------------
+#include <stdio.h>
+
+int main(void)
+{
+    short x = -7;               // 부호 있는 정수
+    unsigned short y = 65529;   // 부호 없는 정수
+
+    printf("x = %5d, %08x\n", x, x); // short형 변수는 출력 시 4바이트로 변환된다.
+    printf("y = %5d, %08x\n", y, y); // short형 변수는 출력 시 4바이트로 변환된다.
+}
+
+3-3-----------------------------------------------------
+#include <stdio.h>
+
+int main(void)
+{
+    char n = 128;               // n에 유효 범위를 벗어나는 값을 저장한다. 
+    unsigned char red = 300;    // 0~255내의 값으로 설정된다.
+
+    printf("n = %d\n", n);
+    printf("red = %d\n", red);
+}
+
+3-4-----------------------------------------------------
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+int main(void)
+{
+    char ch, prev_ch, next_ch;
+
+    printf("문자? ");
+    scanf("%c", &ch);   // 문자 입력
+
+    prev_ch = ch - 1;   // ch 이전 문자
+    next_ch = ch + 1;   // ch 다음 문자
+    printf("prev_ch = %c, %d, %#02x\n", prev_ch, prev_ch, prev_ch);
+    printf("ch      = %c, %d, %#02x\n", ch, ch, ch);
+    printf("next_ch = %c, %d, %#02x\n", next_ch, next_ch, next_ch);
+}
+=======================================
+//특수문자
+#include <stdio.h>
+
+int main(void)
+{
+    char bell = '\b';                               // 특수 문자
+    printf("%c프로그램을 시작합니다.\n", bell);       // 경고음 발생
+
+    printf("c:\\work\\chap03\\Ex03_06\\Debug\n");   // 역슬래시 출력
+
+    printf("\t탭 문자를 출력합니다.\n");             // 탭 문자 출력
+     
+    return 0;
+}
+
+3-5-----------------------------------------------------
+
+#include <stdio.h>
+
+int main(void)
+{
+    float  rate1 = 9.876543210987654;
+    double rate2 = 9.876543210987654;
+
+    printf("float  rate1 = %.15f\n", rate1);    // 소수점 이하 15자리 출력
+    printf("double rate2 = %.15f\n", rate2);    // 소수점 이하 15자리 출력
+}
+
+3-6-----------------------------------------------------
+
+#include <stdio.h>
+
+int main(void)
+{
+    float num = 3.40282e38; // float형의 최대값 저장
+    printf("num = %.15e\n", num);
+
+    num = 3.40282e40;       // float형의 오버플로우 발생 --> INF로 설정
+    printf("num = %.15e\n", num);
+
+    num = 1.17549e-38;      // float형의 최소값 저장
+    printf("num = %.15e\n", num);
+
+    num = 1.17549e-42;      // 가수부를 줄여서 실수 표현
+    printf("num = %.15e\n", num); 
+
+    num = 1.17549e-46;      // float형의 언더플로우 발생 --> 0으로 설정
+    printf("num = %.15e\n", num);
+}
+
+3-7-----------------------------------------------------
+
+#define _CRT_SECURE_NO_WARNINGS     // scanf 사용을 위해서 필요
+#include <stdio.h>
+
+int main(void)
+{
+    int amount;             // 수량 --> 초기화되지 않았으므로 쓰레기 값
+    int price = 1000;       // 단가 --> 1000으로 초기화
+    int total_price = 0;    // 합계 금액 --> 정수형 변수는 0으로 초기화
+
+    //printf("amount = %d, price = %d\n", amount, price);
+
+    printf("수량? ");         // amount 입력
+    scanf("%d", &amount);
+
+    printf("단가? ");         // price 입력
+    scanf("%d", &price);    
+
+    total_price = amount * price;   // 계산 결과를 total_price에 대입
+    printf("합계 금액 = %d\n", total_price);
+}
+========================================
+3-8-----------------------------------------------------
+#include <stdio.h>
+
+int main(void)
+{
+    printf("sizeof(\'x\') = %d\n", sizeof('x'));    
+    printf("sizeof(0xa) = %d\n", sizeof(0xa));      
+    printf("sizeof(65536U) = %d\n", sizeof(65536U));
+    printf("sizeof(0.25F) = %d\n", sizeof(0.25F));  
+    printf("sizeof(.5) = %d\n", sizeof(.5));        
+    printf("sizeof(\"x\") = %d\n", sizeof("x"));    
+}
+===========================================
+//리터럴 상수
+#include <stdio.h>
+
+int main(void)
+{
+    printf("sizeof(\'a\') = %d\n", sizeof('a'));        // 4바이트
+    printf("sizeof(12345) = %d\n", sizeof(12345));      
+    printf("sizeof(12345U) = %d\n", sizeof(12345U));
+    printf("sizeof(12345L) = %d\n", sizeof(12345L));
+
+    printf("sizeof(12.34F) = %d\n", sizeof(12.34F));
+    printf("sizeof(12.34567) = %d\n", sizeof(12.34567));
+    printf("sizeof(1.234e-5) = %d\n", sizeof(1.234e-5));
+
+    printf("sizeof(\"abcde\") = %d\n", sizeof("abcde"));
+
+    return 0;
+}   
+
+3-9-----------------------------------------------------
+
+
+#define _CRT_SECURE_NO_WARNINGS     // scanf 사용을 위해서 필요
+#include <stdio.h>
+#define HOURLY_WAGE 8350            // 시간당 급여
+
+int main(void)
+{
+    int working_hours = 0;
+    int wage = 0;
+
+    printf("working hours? ");
+    scanf("%d", &working_hours);            // 근무 시간 입력
+    wage = HOURLY_WAGE * working_hours;     // 임금 계산
+
+    printf("HOURLY_WAGE : %6d\n", HOURLY_WAGE); // 문자열에 포함된 HOURLY_WAGE는 대치되지 않는다.
+    printf("your wage   : %6d\n", wage);
+}
+
+//매크로 상수
+#include <stdio.h>
+#define PI 3.14             // 매크로 상수 정의
+
+int main(void)
+{
+    double radius = 0;
+    double area = 0;
+    
+    printf("반지름? ");
+    scanf("%lf", &radius);  // double형 입력
+    area = PI * radius * radius;
+    printf("원의 면적: %.2f\n", area);
+    printf("PI = %.2f\n", PI);
+
+    return 0;
+}
+
+
+//const변수
+#include <stdio.h>
+
+int main(void)
+{
+    int amount = 0, price = 0;
+    const double VAT_RATE = 0.1;    // 부가가치세율
+    int total_price = 0;            // 합계 금액
+
+    printf("수량? ");
+    scanf("%d", &amount);
+
+    printf("단가? ");
+    scanf("%d", &price);
+
+    total_price = amount * price * (1 + VAT_RATE);
+    printf("합계: %d원\n", total_price);
+
+    //VAT_RATE = 0.15;
+
+    return 0;
+}
+
+
+//리터럴 상수
+#include <stdio.h>
+
+int main(void)
+{
+    printf("sizeof(\'a\') = %d\n", sizeof('a'));        // 4바이트
+    printf("sizeof(12345) = %d\n", sizeof(12345));      
+    printf("sizeof(12345U) = %d\n", sizeof(12345U));
+    printf("sizeof(12345L) = %d\n", sizeof(12345L));
+
+    printf("sizeof(12.34F) = %d\n", sizeof(12.34F));
+    printf("sizeof(12.34567) = %d\n", sizeof(12.34567));
+    printf("sizeof(1.234e-5) = %d\n", sizeof(1.234e-5));
+
+    printf("sizeof(\"abcde\") = %d\n", sizeof("abcde"));
+
+    return 0;
+}   
+
+
