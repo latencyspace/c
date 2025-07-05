@@ -11,6 +11,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "summer_2d", "summer_2d\summ
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "summer_3d", "summer_3d\summer_3d.vcxproj", "{299944B1-68F8-48E4-88BF-159F2CB2ADDD}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "summer_4d", "summer_4d\summer_4d.vcxproj", "{679DEFCD-6196-4B6F-A652-947B7D753C32}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -51,6 +53,14 @@ Global
 		{299944B1-68F8-48E4-88BF-159F2CB2ADDD}.Release|x64.Build.0 = Release|x64
 		{299944B1-68F8-48E4-88BF-159F2CB2ADDD}.Release|x86.ActiveCfg = Release|Win32
 		{299944B1-68F8-48E4-88BF-159F2CB2ADDD}.Release|x86.Build.0 = Release|Win32
+		{679DEFCD-6196-4B6F-A652-947B7D753C32}.Debug|x64.ActiveCfg = Debug|x64
+		{679DEFCD-6196-4B6F-A652-947B7D753C32}.Debug|x64.Build.0 = Debug|x64
+		{679DEFCD-6196-4B6F-A652-947B7D753C32}.Debug|x86.ActiveCfg = Debug|Win32
+		{679DEFCD-6196-4B6F-A652-947B7D753C32}.Debug|x86.Build.0 = Debug|Win32
+		{679DEFCD-6196-4B6F-A652-947B7D753C32}.Release|x64.ActiveCfg = Release|x64
+		{679DEFCD-6196-4B6F-A652-947B7D753C32}.Release|x64.Build.0 = Release|x64
+		{679DEFCD-6196-4B6F-A652-947B7D753C32}.Release|x86.ActiveCfg = Release|Win32
+		{679DEFCD-6196-4B6F-A652-947B7D753C32}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
