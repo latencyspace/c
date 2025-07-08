@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{b5bbad29-03a3-4931-a8b1-70fec688939f}</ProjectGuid>
-    <RootNamespace>midterm</RootNamespace>
+    <ProjectGuid>{e3275e16-6ab4-443e-ad4c-624c010915a0}</ProjectGuid>
+    <RootNamespace>summer_7d</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -134,6 +134,9 @@
   <ItemGroup>
     <Image Include="small.ico" />
     <Image Include="summer.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="7d_ex06.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
