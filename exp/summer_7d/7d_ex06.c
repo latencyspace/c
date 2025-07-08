@@ -9,6 +9,7 @@ int main(void) {
 	while (1) {
 		int available = 0;
 
+		// 복습
 		printf("현재좌석 : [");
 		for (i = 0; i < SEATS; i++) {
 			if (seats[i] == 0) {
@@ -21,11 +22,6 @@ int main(void) {
 		}
 		printf(" ]\n");
 
-		if (available == 0) {
-			printf("모든 좌석이 매진되었습니다.\n");
-			break;
-		}
-
 		printf("예매할 좌석수>> ");
 		int booking;
 		scanf("%d", &booking);
@@ -35,6 +31,7 @@ int main(void) {
 			continue;
 		}
 
+		// 복습
 		int booked = 0;
 		for (i = 0; i < SEATS && booked < booking; i++) {
 			if (seats[i] == 0) {
@@ -44,6 +41,11 @@ int main(void) {
 			}
 		}
 		printf("번 좌석을 예매했습니다.\n");
+
+		if (available == 0) {
+			printf("모든 좌석이 매진되었습니다.\n");
+			break;
+		}
 	}
 	return 0;
 }
