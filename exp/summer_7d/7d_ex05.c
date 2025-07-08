@@ -2,6 +2,7 @@
 #include <stdio.h>
 #define ARR_SIZE 5
 
+// º¹½À
 int main(void) {
 	int matrix[ARR_SIZE][ARR_SIZE];
 	int diag[ARR_SIZE];
