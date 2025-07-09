@@ -21,6 +21,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "summer_6d", "summer_6d\summ
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "summer_7d", "summer_7d\summer_7d.vcxproj", "{E3275E16-6AB4-443E-AD4C-624C010915A0}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "summer_8d", "summer_8d\summer_8d.vcxproj", "{C699E92C-EFF1-4B8E-ABCC-409AC2E0072D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -101,6 +103,14 @@ Global
 		{E3275E16-6AB4-443E-AD4C-624C010915A0}.Release|x64.Build.0 = Release|x64
 		{E3275E16-6AB4-443E-AD4C-624C010915A0}.Release|x86.ActiveCfg = Release|Win32
 		{E3275E16-6AB4-443E-AD4C-624C010915A0}.Release|x86.Build.0 = Release|Win32
+		{C699E92C-EFF1-4B8E-ABCC-409AC2E0072D}.Debug|x64.ActiveCfg = Debug|x64
+		{C699E92C-EFF1-4B8E-ABCC-409AC2E0072D}.Debug|x64.Build.0 = Debug|x64
+		{C699E92C-EFF1-4B8E-ABCC-409AC2E0072D}.Debug|x86.ActiveCfg = Debug|Win32
+		{C699E92C-EFF1-4B8E-ABCC-409AC2E0072D}.Debug|x86.Build.0 = Debug|Win32
+		{C699E92C-EFF1-4B8E-ABCC-409AC2E0072D}.Release|x64.ActiveCfg = Release|x64
+		{C699E92C-EFF1-4B8E-ABCC-409AC2E0072D}.Release|x64.Build.0 = Release|x64
+		{C699E92C-EFF1-4B8E-ABCC-409AC2E0072D}.Release|x86.ActiveCfg = Release|Win32
+		{C699E92C-EFF1-4B8E-ABCC-409AC2E0072D}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
