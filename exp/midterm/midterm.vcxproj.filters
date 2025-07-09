@@ -42,7 +42,7 @@
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="midterm_hint_ex01.c">
+    <ClCompile Include="midterm_hint_ex21.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
