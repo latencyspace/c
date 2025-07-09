@@ -31,12 +31,12 @@ int main(void) {
         num_sets = num_fries;
     }
 
-    // 3. 세트를 구성하고 남은 단품 개수 계산
+    // 세트를 구성하고 남은 단품 개수 계산
     rem_burger = num_burger - num_sets;
     rem_coke = num_coke - num_sets;
     rem_fries = num_fries - num_sets;
 
-    // 4. 영수증 출력
+    // 영수증 출력
     printf("%-10s\t%s\t%s\t%s\n", "상품명", "단가", "수량", "금액");
 
     // 세트 메뉴 계산 및 출력
