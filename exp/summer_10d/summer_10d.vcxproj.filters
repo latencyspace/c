@@ -41,4 +41,9 @@
       <Filter>리소스 파일</Filter>
     </Image>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="10d_ex04.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+  </ItemGroup>
 </Project>
