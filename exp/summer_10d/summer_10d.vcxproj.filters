@@ -41,12 +41,4 @@
       <Filter>리소스 파일</Filter>
     </Image>
   </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="midterm_hint_ex37.c">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="midterm_hint_ex36.c">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-  </ItemGroup>
 </Project>

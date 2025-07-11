@@ -42,10 +42,16 @@
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="midterm_hint_ex37.c">
+    <ClCompile Include="midterm_02.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="midterm_hint_ex36.c">
+    <ClCompile Include="midterm_03.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="midterm_04.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="midterm_01.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
