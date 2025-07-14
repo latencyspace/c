@@ -1,0 +1,256 @@
+9-1===========================================================
+#include <stdio.h>
+
+int main(void)
+{
+    char str1[10] = "abc";              // 문자 배열은 문자열 리터럴로 초기화한다.
+    char str2[10] = "very long string"; //문자 배열보다 긴 문자열로 초기화하는 경우
+    char str3[] = "abc";                // 크기가 4인 배열로 할당된다.
+    char str4[10] = "";                 // 배열 전체를 널 문자로 초기화한다.
+    int i;
+
+    str1[0] = 'A';                      // 인덱스를 이용해서 한 문자씩 변경할 수 있다.
+    printf("str1 = ");
+    for (i = 0; str1[i] != '\0'; i++)   // 널 문자를 만날 때까지 
+        printf("%c", str1[i]);          // str1[i]를 한 문자씩 출력한다.
+    printf("\n");
+
+    printf("str2 = %s\n", str2);    // 문자열의 끝에 널 문자가 없으므로 쓰레기값 출력
+    printf(str3);           // printf 함수의 첫 번째 인자로 문자 배열을 전달할 수 있다.
+    printf("\nstr4 = %s\n", str4);  // str4는 널 문자열이므로 아무것도 출력되지 않는다.
+
+    //str1 = "XYZ";         // 배열 이름은 배열의 시작 주소이므로 변경할 수 없다.
+    strcpy(str1, "XYZ");    // 문자열을 변경하려면 문자열 처리 함수를 이용한다.
+}
+
+9-2===========================================================
+#include <stdio.h>
+#include <string.h>             // 문자열 처리 함수 사용 시 필요하다.
+
+int main(void)
+{
+    char str[10] = "hello";     // 크기가 10인 문자 배열 선언
+    int len = 0;
+                                                               
+    printf("str의 길이: %d\n", strlen(str));       // 널 문자를 제외한 문자열의 길이
+    printf("\"good bye\"의 길이: %d\n", strlen("good bye"));   // 문자열 리터럴의 길이
+
+    printf("str = %s\n", str);
+    len = strlen(str);
+    if (len > 0)                // 널 문자열이 아니면
+        str[len - 1] = '\0';    // 마지막 한 글자를 삭제한다.
+    printf("str = %s\n", str);
+}
+9-3===========================================================
+#define _CRT_SECURE_NO_WARNINGS // Visual Studio 2019에서 scanf, strcpy 사용 시 필요
+#include <stdio.h>
+#include <string.h>             // 문자열 처리 함수 사용 시 포함
+
+int main(void)
+{
+    char str1[10] = "";         // 널 문자열로 초기화한다.
+    char str2[10] = "";         // 널 문자열로 초기화한다.
+    char temp[10];
+    
+    printf("2개의 문자열? ");
+    scanf("%s %s", str1, str2); // 빈칸으로 구분해서 문자열 입력
+    printf("str1 = %s, str2 = %s\n", str1, str2);
+
+    // 두 문자 배열을 swap한다.
+    strcpy(temp, str1);         // str1을 temp로 복사한다.
+    strcpy(str1, str2);         // str2을 str1로 복사한다.
+    strcpy(str2, temp);         // temp을 str2로 복사한다.
+    printf("str1 = %s, str2 = %s\n", str1, str2);
+}
+9-4===========================================================
+#include <stdio.h>
+#include <string.h>             // 문자열 처리 함수 사용 시 필요하다
+
+int main(void)
+{
+    char s1[10] = "apple";
+    char s2[10] = "apple";
+
+    if (s1 == s2)               // s1과 s2의 주소가 같은지 비교한다.
+        printf("s1과 s2의 주소가 같습니다.\n");
+    else
+        printf("s1과 s2의 주소가 다릅니다.\n");
+
+    if (strcmp(s1, s2) == 0)    // s1과 s2의 내용이 같은지 비교한다.
+        printf("s1과 s2의 내용이 같습니다.\n");
+    else
+        printf("s1과 s2의 내용이 다릅니다.\n");
+}
+9-5===========================================================
+#define _CRT_SECURE_NO_WARNINGS // Visual Studio 2019에서 scanf, strcat 사용 시 필요
+#include <stdio.h>
+#include <string.h>
+
+int main(void)
+{
+    char sentence[100] = "";
+    char word[20];
+
+    do {
+        printf("단어? ");
+        scanf("%s", word);
+        strcat(sentence, word);         // 입력받은 단어를 sentence의 끝에 붙인다.
+        strcat(sentence, " ");          // 단어를 구분할 수 있도록 빈칸을 붙인다.
+    } while (strcmp(word, ".") != 0);   // "."이 입력될 때까지 반복한다.
+
+    printf("%s\n", sentence);
+}
+9-6===========================================================
+#include <stdio.h>
+#include <string.h>
+
+int main(void)
+{
+    char filename[] = "readme.txt";
+    char *p = NULL;
+
+    p = strchr(filename, '.');      // filename에서 '.' 문자를 찾아 그 주소를 받아온다.
+    if (p != NULL)
+        printf("file extension: %s\n", p + 1);  // p + 1은 '.' 다음 위치의 문자열 주소
+
+    p = strstr(filename, ".txt");   // filename에서 ".txt" 문자열을 찾아 그 주소를 받아온다.
+    if (p != NULL)
+        printf("file type: TEXT file\n");
+}
+9-7===========================================================
+#define _CRT_SECURE_NO_WARNINGS     // Visual Studio 2019에서 strtok 사용 시 필요
+#include <stdio.h>
+#include <string.h>
+
+int main(void)
+{
+    char phone[] = "010-123-4567";
+    char *p = NULL;
+
+    p = strtok(phone, "-");
+    printf("mobile  : %s\n", p);
+    p = strtok(NULL, "-");
+    printf("prefix  : %s\n",p);
+    p = strtok(NULL, "-");
+    printf("line no.: %s\n", p);
+}
+9-8===========================================================
+#define _CRT_SECURE_NO_WARNINGS // Visual Studio 2019에서 sscanf, sprintf 사용 시 필요
+#include <stdio.h>
+#include <string.h>
+
+int main(void)
+{
+    char str_in[128];
+    char str_out[128];
+    int year, month, day;
+
+    printf("날짜(yyyymmdd)? ");
+    gets_s(str_in, sizeof(str_in)); // 한 줄의 문자열 입력
+
+    // 문자열을 int형의 year, month, day로 변환한다.
+    sscanf(str_in, "%4d%2d%2d", &year, &month, &day);
+
+    // 출력할 문자열을 str_out에 생성한다.
+    sprintf(str_out, "Due Date: %04d-%02d-%02d", year, month, day);
+    puts(str_out);                  // 한줄의 문자열 출력
+}
+
+
+9-9===========================================================
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>                  // 문자 처리 라이브러리 사용 시 필요
+
+int main(void)
+{
+    char str[64] = "this is test string for char pointer.";
+    char* p = str;                  // p는 str 배열을 가리킨다.
+
+    while (1) {
+        if (islower(p[0]))          // p[0]이 소문자인지 검사한다.
+            p[0] = toupper(p[0]);   // p가 가리키는 str[0]을 대문자로 변경한다.
+        p = strchr(p, ' ');         // str중 ' ' 문자를 찾아 그 주소를 p에 저장한다.
+        if (p == NULL)
+            break;
+        p++;                        // p가 ' ' 문자 다음 문자를 가리키게 한다.
+    }
+    puts(str);
+}
+
+9-10===========================================================
+#include <stdio.h>
+#include <string.h>             
+#include <ctype.h>       
+
+int count_space(const char* s)  // s는 입력 매개변수이므로 함수 안에서 변경되지 않는다.
+{
+    int count = 0;
+    while (s[0] != '\0') {      // while (*s != '\0') 과 같은 의미
+        if (isspace(s[0]))      // *s가 공백 문자인지 검사한다.
+            count++;
+        s++;                    // s는 다음 문자를 가리킨다.
+    }
+    return count;
+}
+
+int main(void)
+{
+    char str[64] = "this program\ttests const pointer to string.\n";
+
+    puts(str);
+    printf("공백 문자의 개수: %d\n", count_space(str));    // str은 변경되지 않는다.
+}
+
+9-11==========================================================
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+int main(void)
+{
+    char books[5][30] = {
+        "wonder", "me before you", "the hunger games", "twilight", "harry potter"
+    };
+    int i = 0;
+
+    for (i = 0; i < 5; i++)             // 2차원 배열의 행 크기만큼 반복한다.
+        printf("%s\n", books[i]);       // i번째 문자열을 출력한다.
+
+    for (i = 0; i < 5; i++) {
+        if (islower(books[i][0]))       // i번째 문자열의 0번째 문자가 소문자인지 검사
+            books[i][0] = toupper(books[i][0]); // 대문자로 변환한다.
+    }
+
+    puts("<< 변경 후 >>");
+    for (i = 0; i < 5; i++)
+        printf("%s\n", books[i]);
+}
+
+9-12===========================================================
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <string.h>
+
+int main(void)
+{
+    const char* str_menu[] = {  // str_menu는 원소가 5개인 포인터 배열
+        "끝내기", "새로 만들기", "파일 열기", "파일 저장", "인쇄"
+    };
+    int sz_menu = sizeof(str_menu) / sizeof(str_menu[0]);   // 포인터 배열의 크기
+    int menu;
+
+    while (1) {
+        int i;
+        for (i = 0; i < sz_menu; i++)           // 포인터 배열의 크기만큼 반복한다.
+            printf("%d.%s\n", i, str_menu[i]);  // str_menu[i]가 가리키는 문자열 출력
+        printf("메뉴 선택? ");
+        scanf("%d", &menu);
+        if (menu == 0)          // menu를 입력받은 다음 루프 탈출 조건을 검사한다.
+            break;
+        else if (menu > 0 && menu < sz_menu)
+            printf("%s 메뉴를 선택했습니다.\n\n", str_menu[menu]);
+        else
+            printf("잘못 선택했습니다.\n\n");
+    }
+}
