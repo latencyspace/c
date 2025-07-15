@@ -42,7 +42,7 @@
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="chapter_08_ex01.c">
+    <ClCompile Include="chapter_08_ex08.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
