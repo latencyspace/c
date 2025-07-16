@@ -136,7 +136,9 @@
     <Image Include="summer.ico" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="chapter_08_ex12.c" />
+    <ClCompile Include="final_ex01_practice.c" />
+    <ClCompile Include="final_ex02_practice.c" />
+    <ClCompile Include="final_ex03_practice.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

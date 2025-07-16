@@ -42,7 +42,13 @@
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="chapter_08_ex12.c">
+    <ClCompile Include="final_ex01_practice.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="final_ex02_practice.c">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="final_ex03_practice.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
