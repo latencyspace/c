@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{d71737e7-bbcd-4090-a9e8-5e51f65233e9}</ProjectGuid>
-    <RootNamespace>final</RootNamespace>
+    <ProjectGuid>{5a4f8908-64b7-4ee9-a7c6-e0d014e61d7c}</ProjectGuid>
+    <RootNamespace>summer_13d</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -136,8 +136,7 @@
     <Image Include="summer.ico" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="chapter_08_ex08.c" />
-    <ClCompile Include="chapter_08_ex09.c" />
+    <ClCompile Include="13d_ex04.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
