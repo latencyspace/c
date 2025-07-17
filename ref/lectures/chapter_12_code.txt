@@ -1,0 +1,227 @@
+ex01_dynamic------------------------------------------------------------------------------------------
+#define _CRT_SECURE_NO_WARNINGS     // Visual Studio 2019에서 scanf 사용 시 필요
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(void)
+{
+    int size;
+    int* arr = NULL;   // 동적 메모리의 주소를 저장할 포인터를 준비한다.
+    int i, sum;
+
+    printf("정수의 개수? ");
+    scanf("%d", &size);
+    arr = malloc(sizeof(int) * size);   // sizeof(int)*size바이트만큼 동적 메모리 할당
+    if (arr == NULL) {                  // 동적 메모리 할당이 실패했는지 확인한다.
+        printf("동적 메모리 할당 실패\n");
+        return -1;                      // 메모리 할당 실패 시 프로그램 종료(비정상 종료)
+    }
+
+    printf("%d개의 정수를 입력하세요: ", size);
+    for (i = 0; i < size; i++)          // 동적 메모리를 가리키는 포인터 arr를     
+        scanf("%d", &arr[i]);           // 배열처럼 사용할 수 있다.
+    for (i = 0, sum = 0; i < size; i++)
+        sum += arr[i];
+    printf("입력된 정수의 합계: %d\n", sum);
+
+    free(arr);      // 사용이 끝나면 동적 메모리를 해제한다.
+    arr = NULL;     // 메모리 해제 후 포인터를 널 포인터로 만든다.
+}
+
+ex02--------------------------------------------------------------------------------------------------------------------
+#define _CRT_SECURE_NO_WARNINGS // Visual Studio 2019에서 strcpy, strcat 사용 시 필요
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+#define MAX_STR 128
+
+// 동적 메모리에 s1과 s2를 결합한 새로운 문자열을 만들어서 리턴한다. 
+char* join_string(const char* s1, const char* s2)
+{
+    int len = 0;
+    char* p = NULL;                     // 동적 메모리의 주소를 저장할 포인터 변수
+
+    if (s1 == NULL || s2 == NULL)
+        return NULL;                    // join_string 실패
+    len = strlen(s1) + strlen(s2) + 1;  // 결합한 문자열의 길이를 구한다.
+    p = (char*)malloc(sizeof(char)*len);    // 결합한 문자열을 저장할 동적 메모리 할당
+    strcpy(p, s1); 
+    strcat(p, s2);
+    return p;       // p가 가리키는 동적 메모리는 함수를 호출한 쪽에서 해제해야 한다.
+}
+
+int main(void)
+{
+    char s1[MAX_STR] = "";
+    char s2[MAX_STR] = "";
+    char* s3 = NULL;
+
+    printf("첫 번째 문자열? ");
+    gets_s(s1, sizeof(s1));         // 빈칸을 포함한 문자열 입력
+    printf("두 번째 문자열? ");
+    gets_s(s2, sizeof(s2));
+    s3 = join_string(s1, s2);   // join_string의 리턴값(동적 메모리의 주소)를 받아온다.
+    if (s3 != NULL)
+        printf("연결된 문자열: %s\n", s3);
+    free(s3);       // s3가 가리키는 문자열은 동적 메모리이므로 사용 후 해제해야 한다.
+    s3 = NULL;
+}
+
+ex03--------------------------------------------------------------------------------------------------------------------
+#define _CRT_SECURE_NO_WARNINGS     // Visual Studio 2019에서 scanf, strcpy 사용 시 필요   
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+#define MAX 100                     // 최대 콘텐츠의 개수
+#define STR_SIZE 40
+
+struct content {
+    char    title[STR_SIZE];
+    int     price;
+    double  rate;
+};
+
+int main(void)
+{
+    struct content* arr[MAX] = { NULL };    // 구조체 포인터 배열(구조체는 아직 생성되지 않음)
+    int cnt = 0;                            // 실제로 할당된 content 구조체의 개수
+    int i;
+
+    while (cnt < MAX) {                     // 최대 MAX개의 콘텐츠 등록
+        char title[STR_SIZE] = "";
+        printf("콘텐츠를 등록합니다.(. 입력 시 종료)\n제목? ");
+        gets_s(title, sizeof(title));
+        if (strcmp(title, ".") == 0)
+            break;
+        // content 구조체 하나를 동적 메모리에 할당하고, 그 주소를 arr[cnt]에 저장한다.
+        arr[cnt] = (struct content*)malloc(sizeof(struct content));
+        strcpy(arr[cnt]->title, title);
+        printf("가격? ");
+        scanf("%d", &arr[cnt]->price);
+        arr[cnt]->rate = 5.0;               // 평점은 디폴트로 5.0으로 지정한다.
+        cnt++;
+        while (getchar() != '\n') {}        // 입력 버퍼를 비운다.
+    }
+    printf("제목                 가격   평점\n");
+    for (i = 0; i < cnt; i++) {             // arr[i]는 content 구조체 포인터
+        printf("%-20s %5d %4.1f\n", arr[i]->title, arr[i]->price, arr[i]->rate);
+    }
+
+    for (i = 0; i < cnt; i++) { // 동적 메모리를 cnt번 할당했으면 cnt번 해제해야 한다.
+        free(arr[i]);
+        arr[i] = NULL;
+    }
+}
+
+ex04--------------------------------------------------------------------------------------------------------------------
+
+#include <stdio.h>
+ 
+int get_factorial(int num)
+{
+    int i;
+    int result = 1;
+
+    for (i = 1; i <= num; i++)
+        result *= i;
+    return result;
+}
+
+int get_sum(int num)                        // get_factorial 함수와 원형이 같은 함수 
+{
+    return num * (num + 1) / 2;
+}
+
+int main(void)
+{
+    int(*pf)(int) = get_factorial;          // pf는 get_factorial 함수를 가리킨다.
+        
+    if (pf)             // pf가 널 포인터가 아닐 때만 pf가 가리키는 함수를 호출한다.
+        printf("%d ! = %d\n", 10, (*pf)(10));       // pf가 가리키는 함수를 호출한다.
+
+    pf = get_sum;       // pf는 이제 get_sum 함수를 가리킨다.
+    if (pf)
+        printf("%d까지 합계 = %d\n", 10, pf(10));   // pf가 가리키는 함수를 호출한다.
+}
+
+ex05--------------------------------------------------------------------------------------------------------------------
+
+#define _CRT_SECURE_NO_WARNINGS     // Visual Studio 2019에서 scanf 사용 시 필요   
+#include <stdio.h>
+
+typedef void(*pfunc_t)(const char*);           // 함수 포인터형 정의
+
+void open_file(const char* filename) {
+    printf("%s 파일을 엽니다.\n", filename);
+}
+
+void save_file(const char* filename) {
+    printf("%s 파일을 저장합니다.\n", filename);
+}
+
+void print_file(const char* filename) {
+    printf("%s 파일을 인쇄합니다.\n", filename);
+}
+
+int main(void)
+{
+    // 메뉴 번호와 메뉴 선택 시 호출할 함수의 인덱스가 같도록 함수 포인터 배열을 초기화한다. 
+    pfunc_t pf_arr[] = { open_file, save_file, print_file };
+    const char* menu_str[] = {  // 메뉴 출력에 사용할 문자열 포인터 배열
+        "열기", "저장", "인쇄", "종료"
+    };
+    int size = sizeof(pf_arr) / sizeof(pf_arr[0]);
+
+    while (1) {
+        int i;
+        int selected = 0;
+        for (i = 0; i < size + 1; i++)  // 종료 메뉴까지 출력해야 한다.
+            printf("%d.%s  ", i, menu_str[i]);
+        printf("선택? ");
+        scanf("%d", &selected);
+        if (selected == size)
+            break;
+        if (selected >= 0 && selected < size)    
+            pf_arr[selected]("test.doc");   // 선택된 메뉴 번호를 인덱스로 사용한다.
+        else 
+            printf("잘못 선택하셨습니다.\n");
+    }
+}
+
+ex06--------------------------------------------------------------------------------------------------------------------
+#include <stdio.h>
+#include <stdlib.h>
+
+int compare_int(const void *e1, const void *e2);    // 배열 원소를 비교하는 함수
+void print_array(const int arr[], int size);        // 배열 원소를 출력하는 함수
+
+int main(void)
+{
+    int arr[] = { 53, 61, 32, 93, 28, 43, 78, 13, 5, 81 };
+    int size = sizeof(arr) / sizeof(arr[0]);
+
+    printf("정렬 전: ");
+    print_array(arr, size);
+
+    qsort(arr, size, sizeof(arr[0]), compare_int);
+
+    printf("정렬 후: ");
+    print_array(arr, size);
+}
+
+int compare_int(const void *e1, const void *e2)     // int 배열의 원소를 비교하는 함수
+{
+    const int *p1 = (const int*)e1;	    // e1을 형 변환해서 사용해야 한다.
+    const int *p2 = (const int*)e2;	    // e2를 형 변환해서 사용해야 한다.
+    return (*p1 - *p2);
+}
+
+void print_array(const int arr[], int size)
+{
+    int  i;
+    for (i = 0; i < size; i++)
+        printf("%d ", arr[i]);
+    printf("\n");
+}
